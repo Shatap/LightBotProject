@@ -29,6 +29,7 @@ private:
     void dessiner_panneau();
     void dessiner_rond();
     int numero_position(Position m);
+    Position position_case(int i, int j);
 public:
     AppliTableau();
 protected:

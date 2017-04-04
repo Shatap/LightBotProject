@@ -6,14 +6,16 @@ namespace {
 constexpr int W = 600, H = 400;
 constexpr float RAYON = 20.0;
 constexpr float X_TEXTE = 400., Y_TEXTE = 350.;
-const std::string POLICE = "/usr/share/fonts/truetype/msttcorefonts/Comic_Sans_MS.ttf";
+//const std::string POLICE = "/usr/share/fonts/truetype/msttcorefonts/Comic_Sans_MS.ttf";
+const std::string POLICE ="/usr/share/fonts/truetype/freefont/FreeMono.ttf";
+
 const     Position COIN_RECTANGLE {500,350},
-DIMS_RECTANGLE {50, 25}, COIN_PALETTE {400, 100}, DIMS_PALETTE{50, 175};
-
+DIMS_RECTANGLE {50, 25}, COIN_PALETTE {400, 100}, DIMS_PALETTE{50, 175},
+DIMS_CASE_CADR{50,50};
+const int CASE_SIZE =50;
 }
-
 AppliTableau::AppliTableau()
-    : Application {600, 400, L"Démo Tableau"}
+    : Application {1080, 720, L"Démo Tableau"}
 
 {
     m_rect.setPosition(COIN_RECTANGLE);
@@ -32,8 +34,10 @@ AppliTableau::AppliTableau()
 
     m_numcouleur= -1;
 
+
+
+
 }
-// dans le .cpp
 std::array<sf::Color, 7> COULEURS {
     sf::Color::Black,
             sf::Color::Red,
@@ -43,6 +47,7 @@ std::array<sf::Color, 7> COULEURS {
             sf::Color::Magenta,
             sf::Color::Cyan
 };
+
 
 void AppliTableau::loop()
 {
@@ -67,10 +72,6 @@ void AppliTableau::loop()
         break;
     }
 
-    if (m_etat == Etat::FINAL) {
-        stop();
-        return;
-    }
 
     m_window.display();
 }
@@ -88,18 +89,15 @@ void AppliTableau::mouse_button_released()
 {
     switch (m_etat) {
     case Etat::DEPLACEMENT :
-        if (souris_dans_rectangle(COIN_RECTANGLE, DIMS_RECTANGLE)) {
+        if (souris_dans_rectangle(COIN_RECTANGLE, DIMS_RECTANGLE))
             m_etat = Etat::INITIAL;
-        }
-    break;
+        break;
     case Etat::AJOUT:
         m_etat=Etat::INITIAL;
-
-
         break;
     default:
         break;
-}
+    }
 }
 
 bool AppliTableau::souris_dans_rectangle(const Position & coin, const Position & dims) const
@@ -147,6 +145,28 @@ void AppliTableau::dessiner_panneau()
         m_palette.setSize(DIMS_RECTANGLE);
         m_window.draw(m_palette);
     }
+
+    float x =200;
+    float y =200;
+    m_case.setFillColor(sf::Color::White);
+    m_case.setOutlineColor(sf::Color::Black);
+    m_case.setOutlineThickness(3);
+    m_case.setSize({50,50});
+
+
+    for(int i=0;i<5;i++)
+    {
+        for(int j=0;j<5;j++)
+        {
+
+            m_case.setPosition(position_case(i,j));
+
+
+
+            m_window.draw(m_case);
+
+        }
+    }
 }
 
 int AppliTableau::numero_position(Position m)
@@ -163,9 +183,17 @@ int AppliTableau::numero_position(Position m)
     }
 }
 
+Position AppliTableau::position_case(int i,int j)
+{
+ Position pos={CASE_SIZE+i*CASE_SIZE,CASE_SIZE+j*CASE_SIZE};
+ return pos;
+}
+
 void AppliTableau::dessiner_rond()
 {
     m_rond.setRadius(10);
     m_rond.setFillColor(COULEURS[m_numcouleur]);
     m_rond.setPosition(m_mouse);
+
+
 }
