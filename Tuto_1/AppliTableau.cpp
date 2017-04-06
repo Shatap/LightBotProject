@@ -7,7 +7,7 @@ constexpr int W = 600, H = 400;
 constexpr float RAYON = 20.0;
 constexpr float X_TEXTE = 400., Y_TEXTE = 350.;
 //const std::string POLICE = "/usr/share/fonts/truetype/msttcorefonts/Comic_Sans_MS.ttf";
-const std::string POLICE ="/usr/share/fonts/truetype/freefont/FreeMono.ttf";
+const std::string POLICE ="/usr/share/fonts/gnu-free/FreeMono.ttf";
 
 const     Position COIN_RECTANGLE {500,350},
 DIMS_RECTANGLE {50, 25}, COIN_PALETTE {400, 100}, DIMS_PALETTE{50, 175},
@@ -68,7 +68,8 @@ void AppliTableau::loop()
     case Etat::AJOUT:
         dessiner_rond();
         m_window.draw(m_rond);
-        cout <<"AJOUT"<< endl;
+
+
         break;
     }
 
@@ -92,7 +93,11 @@ void AppliTableau::mouse_button_released()
         if (souris_dans_rectangle(COIN_RECTANGLE, DIMS_RECTANGLE))
             m_etat = Etat::INITIAL;
         break;
+
     case Etat::AJOUT:
+        modifierCouleur();
+        cout <<"AJOUT"<< endl;
+
         m_etat=Etat::INITIAL;
         break;
     default:
@@ -146,8 +151,7 @@ void AppliTableau::dessiner_panneau()
         m_window.draw(m_palette);
     }
 
-    float x =200;
-    float y =200;
+
     m_case.setFillColor(sf::Color::White);
     m_case.setOutlineColor(sf::Color::Black);
     m_case.setOutlineThickness(3);
@@ -160,8 +164,6 @@ void AppliTableau::dessiner_panneau()
         {
 
             m_case.setPosition(position_case(i,j));
-
-
 
             m_window.draw(m_case);
 
@@ -185,8 +187,14 @@ int AppliTableau::numero_position(Position m)
 
 Position AppliTableau::position_case(int i,int j)
 {
- Position pos={CASE_SIZE+i*CASE_SIZE,CASE_SIZE+j*CASE_SIZE};
- return pos;
+    Position pos={CASE_SIZE+i*CASE_SIZE,CASE_SIZE+j*CASE_SIZE};
+    return pos;
+}
+
+void AppliTableau::modifierCouleur()
+{
+
+        std::cout << "OUIIII " << endl;
 }
 
 void AppliTableau::dessiner_rond()

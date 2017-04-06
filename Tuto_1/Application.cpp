@@ -1,5 +1,5 @@
 #include "Application.h"
-
+#include <math.h>       /* sqrt */
 
 Application::Application(unsigned int w, unsigned int h,
                      const std::wstring & title )

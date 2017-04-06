@@ -29,6 +29,8 @@ private:
     void dessiner_panneau();
     void dessiner_rond();
     int numero_position(Position m);
+    void modifierCouleur();
+
     Position position_case(int i, int j);
 public:
     AppliTableau();
