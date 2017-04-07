@@ -6,18 +6,12 @@ namespace {
 constexpr int W = 600, H = 400;
 constexpr float RAYON = 20.0;
 constexpr float X_TEXTE = 400., Y_TEXTE = 350.;
-<<<<<<< HEAD
-const std::string POLICE = "/usr/share/fonts/truetype/msttcorefonts/Comic_Sans_MS.ttf";
-//const std::string POLICE ="/usr/share/fonts/truetype/freefont/FreeMono.ttf";
-=======
-//const std::string POLICE = "/usr/share/fonts/truetype/msttcorefonts/Comic_Sans_MS.ttf";
-const std::string POLICE ="/usr/share/fonts/gnu-free/FreeMono.ttf";
->>>>>>> d15205cd7e21d7d14993d1cf6281bd4a1c43543a
-
+const std::string POLICE ="/home/ezraisreal/github/fonts/ComicSans.ttf";
 const     Position COIN_RECTANGLE {500,350},
 DIMS_RECTANGLE {50, 25}, COIN_PALETTE {400, 100}, DIMS_PALETTE{50, 175},
 DIMS_CASE_CADR{50,50};
-const int CASE_SIZE =50;
+const int CASE_SIZE=50;
+bool mouse_pressed;
 }
 AppliTableau::AppliTableau()
     : Application {1080, 720, L"Démo Tableau"}
@@ -73,8 +67,9 @@ void AppliTableau::loop()
     case Etat::AJOUT:
         dessiner_rond();
         m_window.draw(m_rond);
-
-
+        mouse_pressed= true;
+        break;
+    case Etat::INITIAL:
         break;
     }
 
@@ -102,7 +97,6 @@ void AppliTableau::mouse_button_released()
     case Etat::AJOUT:
         modifierCouleur();
         cout <<"AJOUT"<< endl;
-
         m_etat=Etat::INITIAL;
         break;
     default:
@@ -169,7 +163,8 @@ void AppliTableau::dessiner_panneau()
         {
 
             m_case.setPosition(position_case(i,j));
-
+            cout << i << endl;
+            cout << j << endl;
             m_window.draw(m_case);
 
         }
@@ -196,17 +191,21 @@ Position AppliTableau::position_case(int i,int j)
     return pos;
 }
 
-void AppliTableau::modifierCouleur()
+void AppliTableau::modifierCouleur(int i, int j)
 {
-
-        std::cout << "OUIIII " << endl;
+    if (m_mouse.x>CASE_SIZE*i && m_mouse.x<CASE_SIZE*(2*i) && m_mouse.y>CASE_SIZE*j && m_mouse.x<CASE_SIZE*(2*j))
+    {
+        m_mouse_square_x=i;
+        m_mouse_square_y=j;
+    }
 }
 
 void AppliTableau::dessiner_rond()
 {
+    cout << mouse_pressed << endl;
     m_rond.setRadius(10);
     m_rond.setFillColor(COULEURS[m_numcouleur]);
     m_rond.setPosition(m_mouse);
-
-
+    cout << m_mouse.x << endl;
+    cout << m_mouse.y << endl;
 }

@@ -1,18 +1,12 @@
 #include "AppliDeplacementPion.h"
 
 namespace {
-    constexpr int W = 600, H = 400;
-    constexpr float RAYON = 20.0;
-    constexpr float X_TEXTE = 400., Y_TEXTE = 350.;
-<<<<<<< HEAD
-    const std::string POLICE = "/usr/share/fonts/truetype/msttcorefonts/Comic_Sans_MS.ttf";
-    //const std::string POLICE ="/usr/share/fonts/truetype/freefont/FreeMono.ttf";
-=======
-    //const std::string POLICE = "/usr/share/fonts/truetype/msttcorefonts/Comic_Sans_MS.ttf";
-    const std::string POLICE ="/usr/share/fonts/gnu-free/FreeMono.ttf";
->>>>>>> d15205cd7e21d7d14993d1cf6281bd4a1c43543a
-    const     Position COIN_RECTANGLE {500,350},
-            DIMS_RECTANGLE {50, 25};
+constexpr int W = 600, H = 400;
+constexpr float RAYON = 20.0;
+constexpr float X_TEXTE = 400., Y_TEXTE = 350.;
+const std::string POLICE ="/home/ezraisreal/github/fonts";
+const     Position COIN_RECTANGLE {500,350},
+DIMS_RECTANGLE {50, 25};
 }
 
 AppliDeplacementPion::AppliDeplacementPion()
@@ -86,17 +80,17 @@ void AppliDeplacementPion::mouse_button_pressed()
 
 void AppliDeplacementPion::mouse_button_released()
 {
-   switch (m_etat) {
-   case Etat::DEPLACEMENT :
-       if (souris_dans_rectangle(COIN_RECTANGLE, DIMS_RECTANGLE)) {
-           m_etat = Etat::FINAL;
-       } else {
-           m_etat = Etat::INITIAL;
-       }
-       break;
-   default:
-       break;
-   }
+    switch (m_etat) {
+    case Etat::DEPLACEMENT :
+        if (souris_dans_rectangle(COIN_RECTANGLE, DIMS_RECTANGLE)) {
+            m_etat = Etat::FINAL;
+        } else {
+            m_etat = Etat::INITIAL;
+        }
+        break;
+    default:
+        break;
+    }
 }
 
 void AppliDeplacementPion::mouse_moved()
