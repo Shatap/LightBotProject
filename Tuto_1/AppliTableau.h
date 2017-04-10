@@ -1,3 +1,4 @@
+
 #ifndef APPLITABLEAU_H
 #define APPLITABLEAU_H
 
@@ -26,8 +27,9 @@ private:
     void mouse_button_released() override;
     void mouse_button_pressed() override;
 
-    void dessiner_panneau();
+    void dessiner_palette();
     void dessiner_rond();
+    void dessiner_grille();
     int numero_position(Position m);
     void modifierCouleur();
 

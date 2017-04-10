@@ -6,16 +6,9 @@ namespace {
 constexpr int W = 600, H = 400;
 constexpr float RAYON = 20.0;
 constexpr float X_TEXTE = 400., Y_TEXTE = 350.;
-<<<<<<< HEAD
-const std::string POLICE = "/usr/share/fonts/truetype/msttcorefonts/Comic_Sans_MS.ttf";
-//const std::string POLICE ="/usr/share/fonts/truetype/freefont/FreeMono.ttf";
-=======
-//const std::string POLICE = "/usr/share/fonts/truetype/msttcorefonts/Comic_Sans_MS.ttf";
-const std::string POLICE ="/usr/share/fonts/gnu-free/FreeMono.ttf";
->>>>>>> d15205cd7e21d7d14993d1cf6281bd4a1c43543a
-
+const std::string POLICE ="/usr/share/fonts/truetype/freefont/FreeMono.ttf";
 const     Position COIN_RECTANGLE {500,350},
-DIMS_RECTANGLE {50, 25}, COIN_PALETTE {400, 100}, DIMS_PALETTE{50, 175},
+DIMS_RECTANGLE {50, 25}, COIN_PALETTE {400, 100}, DIMS_CASECOLOR{50, 25},DIMS_PALETTE{50, 175},
 DIMS_CASE_CADR{50,50};
 const int CASE_SIZE =50;
 }
@@ -39,6 +32,9 @@ AppliTableau::AppliTableau()
 
     m_numcouleur= -1;
 
+    for(int i=0; i<5; ++i)
+        for(int j=0; j<5; ++j)
+            m_tableau[i][j]= -1;
 
 
 
@@ -62,7 +58,8 @@ void AppliTableau::loop()
     m_window.draw(m_rect);
     m_window.draw(m_texte);
 
-    dessiner_panneau();
+    dessiner_palette();
+    dessiner_grille();
     numero_position(m_mouse);
 
     switch(m_etat)
@@ -77,8 +74,6 @@ void AppliTableau::loop()
 
         break;
     }
-
-
     m_window.display();
 }
 
@@ -88,8 +83,8 @@ void AppliTableau::mouse_button_pressed()
         m_etat = Etat::FINAL;
     } else if (souris_dans_rectangle(COIN_PALETTE, DIMS_PALETTE)){
         m_etat = Etat::AJOUT;
-
     }
+
 }
 void AppliTableau::mouse_button_released()
 {
@@ -102,7 +97,6 @@ void AppliTableau::mouse_button_released()
     case Etat::AJOUT:
         modifierCouleur();
         cout <<"AJOUT"<< endl;
-
         m_etat=Etat::INITIAL;
         break;
     default:
@@ -119,35 +113,10 @@ bool AppliTableau::souris_dans_rectangle(const Position & coin, const Position &
 
 Position position_couleur(unsigned c)
 {
-    Position pos{0,0};
-    switch(c) {
-    case 0:
-        pos={COIN_PALETTE.x, COIN_PALETTE.y};
-        break;
-    case 1:
-        pos={COIN_PALETTE.x, COIN_PALETTE.y+25};
-        break;
-    case 2:
-        pos={COIN_PALETTE.x, COIN_PALETTE.y+50};
-        break;
-    case 3:
-        pos={COIN_PALETTE.x, COIN_PALETTE.y+75};
-        break;
-    case 4:
-        pos={COIN_PALETTE.x, COIN_PALETTE.y+100};
-        break;
-    case 5:
-        pos={COIN_PALETTE.x, COIN_PALETTE.y+125};
-        break;
-    case 6:
-        pos={COIN_PALETTE.x, COIN_PALETTE.y+150};
-        break;
-    default:
-        break;
-    }
-    return pos;
+    Position p{COIN_PALETTE.x, COIN_PALETTE.y + (DIMS_CASECOLOR.y*c)};
+    return p;
 }
-void AppliTableau::dessiner_panneau()
+void AppliTableau::dessiner_palette()
 {
     for (unsigned c=0; c<COULEURS.size(); c++) {
         m_palette.setPosition (position_couleur(c));
@@ -155,23 +124,37 @@ void AppliTableau::dessiner_panneau()
         m_palette.setSize(DIMS_RECTANGLE);
         m_window.draw(m_palette);
     }
+}
 
-
-    m_case.setFillColor(sf::Color::White);
+void AppliTableau::dessiner_grille()
+{
     m_case.setOutlineColor(sf::Color::Black);
     m_case.setOutlineThickness(3);
     m_case.setSize({50,50});
 
 
-    for(int i=0;i<5;i++)
+    for(int i=0;i<5;++i)
     {
-        for(int j=0;j<5;j++)
+        for(int j=0;j<5;++j)
         {
-
-            m_case.setPosition(position_case(i,j));
-
+            m_case.setPosition(CASE_SIZE+i*CASE_SIZE,CASE_SIZE+j*CASE_SIZE);
+            m_case.setFillColor(COULEURS[m_tableau[i][j]]);
             m_window.draw(m_case);
 
+        }
+    }
+}
+
+int AppliTableau::numero_position(Position m)
+{
+    int posmx=m.x-COIN_PALETTE.x;
+    if(posmx>0 && posmx<50)
+    {
+        int posmy=(m.y-COIN_PALETTE.y)/25;
+        if (posmy>=0 && posmy<7)
+        {
+            m_numcouleur=posmy;
+            return m_numcouleur;
         }
     }
 }
@@ -198,8 +181,8 @@ Position AppliTableau::position_case(int i,int j)
 
 void AppliTableau::modifierCouleur()
 {
-
-        std::cout << "OUIIII " << endl;
+    Position case;
+    case=
 }
 
 void AppliTableau::dessiner_rond()
