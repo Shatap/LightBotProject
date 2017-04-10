@@ -36,8 +36,7 @@ AppliTableau::AppliTableau()
         for(int j=0; j<5; ++j)
             m_tableau[i][j]= 0;
 
-
-
+    m_etat = Etat::INITIAL;
 }
 std::array<sf::Color, 7> COULEURS {
     sf::Color::Black,
@@ -52,15 +51,13 @@ std::array<sf::Color, 7> COULEURS {
 
 void AppliTableau::loop()
 {
-
-
     m_window.clear(sf::Color::White);
     m_window.draw(m_rect);
     m_window.draw(m_texte);
 
     dessiner_palette();
     dessiner_grille();
-    numero_position(m_mouse);
+//    numero_position(m_mouse);
 
     switch(m_etat)
     {
@@ -70,8 +67,6 @@ void AppliTableau::loop()
     case Etat::AJOUT:
         dessiner_rond();
         m_window.draw(m_rond);
-
-
         break;
     }
     m_window.display();
@@ -79,16 +74,29 @@ void AppliTableau::loop()
 
 void AppliTableau::mouse_button_pressed()
 {
-    if (souris_dans_rectangle(COIN_RECTANGLE, DIMS_RECTANGLE)) {
-        m_etat = Etat::FINAL;
-    } else if (souris_dans_rectangle(COIN_PALETTE, DIMS_PALETTE)){
-        m_etat = Etat::AJOUT;
-    }
-
+    m_numcouleur=numero_position(m_mouse);
+        //    } else if (souris_dans_rectangle(COIN_PALETTE, DIMS_PALETTE)){
+        //        m_etat = Etat::AJOUT;
+        //    }
+        if (m_numcouleur!= -1 && m_etat==Etat::INITIAL)
+        {
+            m_etat=Etat::AJOUT;
+        }
+        else
+        {
+            m_etat=Etat::INITIAL;
+        }
 }
 void AppliTableau::mouse_button_released()
 {
     switch (m_etat) {
+
+    case Etat::INITIAL:
+    if (souris_dans_rectangle(COIN_RECTANGLE, DIMS_RECTANGLE)) {
+                cout << "squuuuuuuuuuuuuucezjfbernk" << endl;
+        m_etat = Etat::FINAL;
+    }
+    break;
     case Etat::DEPLACEMENT :
         if (souris_dans_rectangle(COIN_RECTANGLE, DIMS_RECTANGLE))
             m_etat = Etat::INITIAL;
@@ -138,7 +146,6 @@ void AppliTableau::dessiner_grille()
         {
             m_case.setPosition(CASE_SIZE+i*CASE_SIZE,CASE_SIZE+j*CASE_SIZE);
             m_case.setFillColor(COULEURS[m_tableau[i][j]]);
-            cout << "Tab: " << m_tableau[i][j] << endl;
             m_window.draw(m_case);
 
         }
@@ -147,28 +154,42 @@ void AppliTableau::dessiner_grille()
 
 int AppliTableau::numero_position(Position m)
 {
-    int posmx=m.x-COIN_PALETTE.x;
-    if(posmx>0 && posmx<50)
+    Position kase=numero_cases(m_mouse);
+    //    int posmx=m.x-COIN_PALETTE.x;
+    //    if(posmx>0 && posmx<50)
+    //    {
+    //        int posmy=(m.y-COIN_PALETTE.y)/25;
+    //        if (posmy>=0 && posmy<7)
+    //        {
+    //            m_numcouleur=posmy;
+    //            return m_numcouleur;
+    //        }
+    //    }
+    if(m.x > COIN_PALETTE.x &&
+            m.x < COIN_PALETTE.x + DIMS_CASECOLOR.x &&
+            m.y > COIN_PALETTE.y &&
+            m.y < COIN_PALETTE.y + DIMS_CASECOLOR.y*COULEURS.size())
     {
-        int posmy=(m.y-COIN_PALETTE.y)/25;
-        if (posmy>=0 && posmy<7)
-        {
-            m_numcouleur=posmy;
-            return m_numcouleur;
-        }
+        return ((m.y-COIN_PALETTE.y)/DIMS_CASECOLOR.y);
     }
+    else if(kase.x != -1)
+    {
+        int couleur = m_tableau[kase.x][kase.y];
+        cout << m_tableau[kase.x][kase.y] << endl;
+        m_tableau[kase.x][kase.y]=0;
+        return couleur;
+    }
+    return -1;
 }
 
 Position AppliTableau::numero_cases(Position m)
 {
     Position c;
     if(m.x > DIMS_CASE_CADR.x && m.x < DIMS_CASE_CADR.x + DIMS_CASE_CADR.x*5 &&
-       m.y > DIMS_CASE_CADR.y && m.y < DIMS_CASE_CADR.y + DIMS_CASE_CADR.y*5)
+            m.y > DIMS_CASE_CADR.y && m.y < DIMS_CASE_CADR.y + DIMS_CASE_CADR.y*5)
     {
         c.x = ((m.x-50) / DIMS_CASE_CADR.x);
         c.y = ((m.y-50) / DIMS_CASE_CADR.y);
-        cout << c.y << endl;
-        cout << c.x << endl;
     }
     else
         return {-1,-1};
