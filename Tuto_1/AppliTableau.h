@@ -31,6 +31,7 @@ private:
     void dessiner_rond();
     void dessiner_grille();
     int numero_position(Position m);
+    Position numero_cases(Position m);
     void modifierCouleur();
 
     Position position_case(int i, int j);

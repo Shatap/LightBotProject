@@ -34,7 +34,7 @@ AppliTableau::AppliTableau()
 
     for(int i=0; i<5; ++i)
         for(int j=0; j<5; ++j)
-            m_tableau[i][j]= -1;
+            m_tableau[i][j]= 0;
 
 
 
@@ -96,7 +96,6 @@ void AppliTableau::mouse_button_released()
 
     case Etat::AJOUT:
         modifierCouleur();
-        cout <<"AJOUT"<< endl;
         m_etat=Etat::INITIAL;
         break;
     default:
@@ -128,7 +127,7 @@ void AppliTableau::dessiner_palette()
 
 void AppliTableau::dessiner_grille()
 {
-    m_case.setOutlineColor(sf::Color::Black);
+    m_case.setOutlineColor(sf::Color::White);
     m_case.setOutlineThickness(3);
     m_case.setSize({50,50});
 
@@ -139,6 +138,7 @@ void AppliTableau::dessiner_grille()
         {
             m_case.setPosition(CASE_SIZE+i*CASE_SIZE,CASE_SIZE+j*CASE_SIZE);
             m_case.setFillColor(COULEURS[m_tableau[i][j]]);
+            cout << "Tab: " << m_tableau[i][j] << endl;
             m_window.draw(m_case);
 
         }
@@ -159,30 +159,31 @@ int AppliTableau::numero_position(Position m)
     }
 }
 
-int AppliTableau::numero_position(Position m)
+Position AppliTableau::numero_cases(Position m)
 {
-    int posmx=m.x-COIN_PALETTE.x;
-    if(posmx>0 && posmx<50)
+    Position c;
+    if(m.x > DIMS_CASE_CADR.x && m.x < DIMS_CASE_CADR.x + DIMS_CASE_CADR.x*5 &&
+       m.y > DIMS_CASE_CADR.y && m.y < DIMS_CASE_CADR.y + DIMS_CASE_CADR.y*5)
     {
-        int posmy=(m.y-COIN_PALETTE.y)/25;
-        if (posmy>=0 && posmy<7)
-        {
-            m_numcouleur=posmy;
-            return m_numcouleur;
-        }
+        c.x = ((m.x-50) / DIMS_CASE_CADR.x);
+        c.y = ((m.y-50) / DIMS_CASE_CADR.y);
+        cout << c.y << endl;
+        cout << c.x << endl;
     }
+    else
+        return {-1,-1};
+    return c;
 }
 
-Position AppliTableau::position_case(int i,int j)
-{
-    Position pos={CASE_SIZE+i*CASE_SIZE,CASE_SIZE+j*CASE_SIZE};
-    return pos;
-}
 
 void AppliTableau::modifierCouleur()
 {
-    Position case;
-    case=
+    Position kase;
+    kase=numero_cases(m_mouse);
+    if(kase.x != -1)
+    {
+        m_tableau[kase.x][kase.y]=m_numcouleur;
+    }
 }
 
 void AppliTableau::dessiner_rond()
