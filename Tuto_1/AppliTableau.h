@@ -1,3 +1,4 @@
+
 #ifndef APPLITABLEAU_H
 #define APPLITABLEAU_H
 
@@ -27,10 +28,16 @@ private:
     void mouse_button_released() override;
     void mouse_button_pressed() override;
 
-    void dessiner_panneau();
+    void dessiner_palette();
     void dessiner_rond();
+    void dessiner_grille();
     int numero_position(Position m);
+<<<<<<< HEAD
     void modifierCouleur(int i, int j);
+=======
+    Position numero_cases(Position m);
+    void modifierCouleur();
+>>>>>>> 23275e15f2c62e12ad0366ecb426943a82fa940d
 
     Position position_case(int i, int j);
 public:
