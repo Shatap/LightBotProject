@@ -2,14 +2,13 @@
 
 
 
-Minuterie::Minuterie(const sf::RectangleShape &rectangle, int delay):
-    Animation(rectangle.getGlobalBounds()),
+Minuterie::Minuterie(const sf::FloatRect &rectangle, int delay):
     m_delay{delay},
     m_rectmins{rectangle},
-    //m_top{top},
-    m_etat{Status::OFF}
+    m_top{delay}
+  //  m_etat{Status::OFF}
 {
-    //m_rectmins.setSize({rectangle.height,rectangle.width});
+    m_rectmins.setSize({rectangle.height,rectangle.width});
     m_rectmins.setOutlineThickness(3);
 
 

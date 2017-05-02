@@ -5,8 +5,9 @@
 
 
 Animation::Animation(const sf::FloatRect &rectangle)
+    :m_rectangle{rectangle}
 {
-//    m_rectangle.left-
+
 }
 
 bool Animation::contient(const Position &position) const
