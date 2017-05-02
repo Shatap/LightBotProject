@@ -23,9 +23,8 @@ AppliAnimation::AppliAnimation()
     minut2.setPosition(300., 100.);
     minut2.setSize({80,40});
     minut1.setFillColor(sf::Color::Black);
-    m_animations.push_back(new Minuterie(minut1, 100));
-    m_animations.push_back(new Minuterie(minut2, 200));
-    minut1.d
+    m_animations.push_back(new Minuterie({100., 100., 50., 50.}, 100));
+    m_animations.push_back(new Minuterie({300., 100., 80., 40.}, 200));
     m_etat = Etat::INITIAL;
 }
 
@@ -38,6 +37,11 @@ void AppliAnimation::loop()
         stop();
         break;
     }
+    for(Animation* a: m_animations)
+    {
+        a->top();
+    a->dessiner(m_window);
+}
     m_window.display();
 }
 

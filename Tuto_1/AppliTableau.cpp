@@ -135,7 +135,6 @@ void AppliTableau::dessiner_grille()
     m_case.setOutlineThickness(3);
     m_case.setSize({50,50});
 
-
     for(int i=0;i<5;++i)
     {
         for(int j=0;j<5;++j)
