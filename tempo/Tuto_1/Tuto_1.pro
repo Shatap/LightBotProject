@@ -13,8 +13,6 @@ SOURCES += main.cpp \
     AppliDeplacementPion.cpp \
     AppliTableau.cpp \
     Animation.cpp \
-    Minuterie.cpp \
-    AppliAnimation.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -24,5 +22,3 @@ HEADERS += \
     AppliDeplacementPion.h \
     AppliTableau.h \
     Animation.h \
-    Minuterie.h \
-    AppliAnimation.h
