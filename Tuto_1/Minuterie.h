@@ -10,10 +10,10 @@ private:
     int m_delay;
     sf::RectangleShape m_rectmins;
     enum class Status {ON,OFF} m_etat;
+    sf::Color _col = sf::Color::Red;
 public:
     Minuterie(const sf::FloatRect &rectangle, int delay);
     void getTimeSpent(sf::RectangleShape rectmins);
-    sf::Color setChangeColor(sf::Color color);
     void dessiner(sf::RenderWindow & window) override;
 
     void clic() override;

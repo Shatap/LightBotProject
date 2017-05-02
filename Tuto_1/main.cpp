@@ -1,7 +1,6 @@
 #include <iostream>
 
-#include "AppliDeplacementPion.h"
-#include "AppliTableau.h"
+
 #include "AppliAnimation.h"
 
 using namespace std;

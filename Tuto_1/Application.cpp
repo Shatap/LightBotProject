@@ -11,6 +11,8 @@ void Application::stop() {
     m_running = false;
 }
 
+
+
 void Application::run()
 {
     m_window.setFramerateLimit(60);

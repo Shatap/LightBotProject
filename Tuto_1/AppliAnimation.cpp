@@ -16,16 +16,18 @@ AppliAnimation::AppliAnimation()
 {
 
 
+
     sf::RectangleShape minut1;
     sf::RectangleShape minut2;
     minut1.setPosition(100., 100.);
     minut1.setSize({50,50});
     minut2.setPosition(300., 100.);
     minut2.setSize({80,40});
-    minut1.setFillColor(sf::Color::Black);
-    m_animations.push_back(new Minuterie({100., 100., 50., 50.}, 100));
-    m_animations.push_back(new Minuterie({300., 100., 80., 40.}, 200));
+    minut1.setFillColor(sf::Color::Red);
+    m_animations.push_back(new Minuterie({00., 300., 200., 200.}, 100));
+    m_animations.push_back(new Minuterie({300., 100., 200., 200.}, 200));
     m_etat = Etat::INITIAL;
+    m_window.setFramerateLimit(20);
 }
 
 void AppliAnimation::loop()
@@ -40,13 +42,23 @@ void AppliAnimation::loop()
     for(Animation* a: m_animations)
     {
         a->top();
-    a->dessiner(m_window);
-}
+        a->dessiner(m_window);
+
+    }
     m_window.display();
 }
 
 void AppliAnimation::mouse_button_pressed()
 {
+    for(Animation *a: m_animations)
+    {
+        if(a->contient(m_mouse)==true)
+        {
+            a->clic();
+             m_window.display();
+        }
+
+    }
 
 }
 void AppliAnimation::mouse_button_released()
@@ -54,10 +66,10 @@ void AppliAnimation::mouse_button_released()
     switch (m_etat) {
 
     case Etat::INITIAL:
-    if (souris_dans_rectangle(COIN_RECTANGLE, DIMS_RECTANGLE)) {
-        m_etat = Etat::FINAL;
-    }
-    break;
+        if (souris_dans_rectangle(COIN_RECTANGLE, DIMS_RECTANGLE)) {
+            m_etat = Etat::FINAL;
+        }
+        break;
 
     default:
         break;
