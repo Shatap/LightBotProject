@@ -11,6 +11,8 @@ void Application::stop() {
     m_running = false;
 }
 
+
+
 void Application::run()
 {
     m_window.setFramerateLimit(60);
@@ -47,7 +49,7 @@ void Application::process_events()
             set_mouse_coord(event.mouseButton.x, event.mouseButton.y);
             mouse_button_pressed();
             break;
-        case sf::Event::MouseButtonReleased :   
+        case sf::Event::MouseButtonReleased :
             // bouton = event.mouseButton.button;
             set_mouse_coord(event.mouseButton.x, event.mouseButton.y);
             mouse_button_released();

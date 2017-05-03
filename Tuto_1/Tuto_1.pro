@@ -11,7 +11,10 @@ LIBS           += -lsfml-graphics -lsfml-window -lsfml-system
 SOURCES += main.cpp \
     Application.cpp \
     AppliDeplacementPion.cpp \
-    AppliTableau.cpp
+    AppliTableau.cpp \
+    Animation.cpp \
+    Minuterie.cpp \
+    AppliAnimation.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -19,4 +22,7 @@ qtcAddDeployment()
 HEADERS += \
     Application.h \
     AppliDeplacementPion.h \
-    AppliTableau.h
+    AppliTableau.h \
+    Animation.h \
+    Minuterie.h \
+    AppliAnimation.h

@@ -3,7 +3,9 @@
 #define APPLITABLEAU_H
 
 #include "Application.h"
+#include "Animation.h"
 #include <array>
+
 
 class AppliTableau : public Application
 {

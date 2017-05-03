@@ -12,10 +12,12 @@ DIMS_RECTANGLE {50, 25};
     constexpr int W = 600, H = 400;
     constexpr float RAYON = 20.0;
     constexpr float X_TEXTE = 400., Y_TEXTE = 350.;
-    const std::string POLICE = "/usr/share/fonts/truetype/msttcorefonts/Comic_Sans_MS.ttf";
+    //const std::string POLICE = "/usr/share/fonts/truetype/msttcorefonts/Comic_Sans_MS.ttf";
     //const std::string POLICE ="/usr/share/fonts/truetype/freefont/FreeMono.ttf";
     //const std::string POLICE = "/usr/share/fonts/truetype/msttcorefonts/Comic_Sans_MS.ttf";
 //    const std::string POLICE ="/usr/share/fonts/gnu-free/FreeMono.ttf";
+    const std::string POLICE ="/usr/share/fonts/gnu-free/FreeMono.ttf";
+
     const     Position COIN_RECTANGLE {500,350},
             DIMS_RECTANGLE {50, 25};
 >>>>>>> 23275e15f2c62e12ad0366ecb426943a82fa940d

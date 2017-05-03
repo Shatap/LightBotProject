@@ -7,10 +7,15 @@ constexpr int W = 600, H = 400;
 constexpr float RAYON = 20.0;
 constexpr float X_TEXTE = 400., Y_TEXTE = 350.;
 <<<<<<< HEAD
+<<<<<<< HEAD
 const std::string POLICE ="/home/ezraisreal/github/fonts/ComicSans.ttf";
 =======
 const std::string POLICE ="/usr/share/fonts/truetype/freefont/FreeMono.ttf";
 >>>>>>> 23275e15f2c62e12ad0366ecb426943a82fa940d
+=======
+//const std::string POLICE ="/usr/share/fonts/truetype/freefont/FreeMono.ttf";
+const std::string POLICE ="/usr/share/fonts/gnu-free/FreeMono.ttf";
+>>>>>>> f60ea0d1bdb9a9138450ef4fed94964d062a946c
 const     Position COIN_RECTANGLE {500,350},
 DIMS_RECTANGLE {50, 25}, COIN_PALETTE {400, 100}, DIMS_CASECOLOR{50, 25},DIMS_PALETTE{50, 175},
 DIMS_CASE_CADR{50,50};
@@ -148,7 +153,6 @@ void AppliTableau::dessiner_grille()
     m_case.setOutlineColor(sf::Color::White);
     m_case.setOutlineThickness(3);
     m_case.setSize({50,50});
-
 
     for(int i=0;i<5;++i)
     {
