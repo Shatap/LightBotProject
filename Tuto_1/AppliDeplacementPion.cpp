@@ -1,6 +1,14 @@
 #include "AppliDeplacementPion.h"
 
 namespace {
+<<<<<<< HEAD
+constexpr int W = 600, H = 400;
+constexpr float RAYON = 20.0;
+constexpr float X_TEXTE = 400., Y_TEXTE = 350.;
+const std::string POLICE ="/home/ezraisreal/github/fonts";
+const     Position COIN_RECTANGLE {500,350},
+DIMS_RECTANGLE {50, 25};
+=======
     constexpr int W = 600, H = 400;
     constexpr float RAYON = 20.0;
     constexpr float X_TEXTE = 400., Y_TEXTE = 350.;
@@ -12,6 +20,7 @@ namespace {
 
     const     Position COIN_RECTANGLE {500,350},
             DIMS_RECTANGLE {50, 25};
+>>>>>>> 23275e15f2c62e12ad0366ecb426943a82fa940d
 }
 
 AppliDeplacementPion::AppliDeplacementPion()
@@ -85,17 +94,17 @@ void AppliDeplacementPion::mouse_button_pressed()
 
 void AppliDeplacementPion::mouse_button_released()
 {
-   switch (m_etat) {
-   case Etat::DEPLACEMENT :
-       if (souris_dans_rectangle(COIN_RECTANGLE, DIMS_RECTANGLE)) {
-           m_etat = Etat::FINAL;
-       } else {
-           m_etat = Etat::INITIAL;
-       }
-       break;
-   default:
-       break;
-   }
+    switch (m_etat) {
+    case Etat::DEPLACEMENT :
+        if (souris_dans_rectangle(COIN_RECTANGLE, DIMS_RECTANGLE)) {
+            m_etat = Etat::FINAL;
+        } else {
+            m_etat = Etat::INITIAL;
+        }
+        break;
+    default:
+        break;
+    }
 }
 
 void AppliDeplacementPion::mouse_moved()

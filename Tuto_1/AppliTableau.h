@@ -21,7 +21,8 @@ private:
     sf::Text m_texte;
     sf::Font m_police;
     int m_numcouleur;
-
+    int m_mouse_square_x;
+    int m_mouse_square_y;
     std::array<std::array<int,5>,5>m_tableau;
 
     bool souris_dans_rectangle(const Position & coin, const Position & dims) const;
@@ -33,8 +34,12 @@ private:
     void dessiner_rond();
     void dessiner_grille();
     int numero_position(Position m);
+<<<<<<< HEAD
+    void modifierCouleur(int i, int j);
+=======
     Position numero_cases(Position m);
     void modifierCouleur();
+>>>>>>> 23275e15f2c62e12ad0366ecb426943a82fa940d
 
     Position position_case(int i, int j);
 public:
