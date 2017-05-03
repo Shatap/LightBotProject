@@ -17,15 +17,11 @@ AppliAnimation::AppliAnimation()
 
 
 
-    sf::RectangleShape minut1;
-    sf::RectangleShape minut2;
-    minut1.setPosition(100., 100.);
-    minut1.setSize({50,50});
-    minut2.setPosition(300., 100.);
-    minut2.setSize({80,40});
-    minut1.setFillColor(sf::Color::Red);
     m_animations.push_back(new Minuterie({00., 300., 200., 200.}, 100));
     m_animations.push_back(new Minuterie({300., 100., 200., 200.}, 200));
+    FeuClignotant f1(20,20,20);
+
+
     m_etat = Etat::INITIAL;
     m_window.setFramerateLimit(20);
 }
@@ -44,6 +40,7 @@ void AppliAnimation::loop()
         a->top();
         a->dessiner(m_window);
 
+
     }
     m_window.display();
 }
@@ -52,10 +49,10 @@ void AppliAnimation::mouse_button_pressed()
 {
     for(Animation *a: m_animations)
     {
-        if(a->contient(m_mouse)==true)
+        if(a->contient(m_mouse))
         {
             a->clic();
-             m_window.display();
+
         }
 
     }

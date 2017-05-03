@@ -6,6 +6,11 @@ using namespace std;
 
 
 
+Animation::Animation()
+{
+
+}
+
 Animation::Animation(const sf::FloatRect &rectangle)
     :m_rectangle{rectangle}
 {
@@ -14,7 +19,7 @@ Animation::Animation(const sf::FloatRect &rectangle)
 
 bool Animation::contient(const Position &position) const
 {
-    std::cout<<position.x<<endl;
+   /* std::cout<<position.x<<endl;
     std::cout<<position.y<<endl<<endl<<endl;
 
 
@@ -25,6 +30,7 @@ bool Animation::contient(const Position &position) const
        std::cout <<m_rectangle.left<<std::endl;
           std::cout <<m_rectangle.left+m_rectangle.width<<endl;
           std::cout <<"fin dimension"<<endl;
+          */
 
 
     return (position.y>=(m_rectangle.top) &&

@@ -9,7 +9,9 @@ private:
 
 protected:
     sf::FloatRect m_rectangle;
+
 public:
+    Animation();
     Animation(const sf::FloatRect &rectangle);
     bool contient (const Position & position) const;
     virtual void clic() = 0;

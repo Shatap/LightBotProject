@@ -4,6 +4,7 @@
 #include "Application.h"
 #include "Animation.h"
 #include "Minuterie.h"
+#include"feuclignotant.h"
 
 class AppliAnimation: public Application
 {
