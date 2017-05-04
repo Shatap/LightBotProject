@@ -15,7 +15,7 @@ SOURCES += main.cpp \
     Animation.cpp \
     Minuterie.cpp \
     AppliAnimation.cpp \
-    feuclignotant.cpp
+    feutricolore.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -27,4 +27,4 @@ HEADERS += \
     Animation.h \
     Minuterie.h \
     AppliAnimation.h \
-    feuclignotant.h
+    feutricolore.h

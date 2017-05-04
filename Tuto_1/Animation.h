@@ -17,7 +17,6 @@ public:
     virtual void clic() = 0;
     virtual void top()  = 0;
     virtual void dessiner(sf::RenderWindow & window) = 0;
-    float getTop();
     virtual ~Animation() =default;
 
 };

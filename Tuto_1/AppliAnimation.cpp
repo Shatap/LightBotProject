@@ -15,11 +15,9 @@ AppliAnimation::AppliAnimation()
 
 {
 
-
-
-    m_animations.push_back(new Minuterie({00., 300., 200., 200.}, 100));
-    m_animations.push_back(new Minuterie({300., 100., 200., 200.}, 200));
-    FeuClignotant f1(20,20,20);
+    m_animations.push_back(new Minuterie({600., 100., 100., 150.}, 50));
+    m_animations.push_back(new Minuterie({800., 100., 100., 150.}, 50));
+    m_animations.push_back(new FeuTricolore({300., 100., 200., 200.},150,50,100));
 
 
     m_etat = Etat::INITIAL;
@@ -39,7 +37,6 @@ void AppliAnimation::loop()
     {
         a->top();
         a->dessiner(m_window);
-
 
     }
     m_window.display();

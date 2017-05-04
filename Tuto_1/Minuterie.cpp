@@ -8,6 +8,7 @@ Minuterie::Minuterie(const sf::FloatRect &rectangle, int delay):
     Animation(rectangle),
     m_delay{delay},
     m_top{delay},
+    _timer{delay},
     m_rectmins{{rectangle.height,rectangle.width}}
 
   //  m_etat{Status::OFF}
@@ -15,7 +16,7 @@ Minuterie::Minuterie(const sf::FloatRect &rectangle, int delay):
 
     m_rectmins.setPosition(rectangle.left, rectangle.top );
 
-    m_rectmins.setFillColor(_col);
+
 }
 
 void Minuterie::dessiner(sf::RenderWindow &window)
@@ -30,7 +31,7 @@ void Minuterie::dessiner(sf::RenderWindow &window)
 
 void Minuterie::clic()
 {
-    m_delay=0;
+    m_delay=_timer;
 
     if(m_rectmins.getFillColor()==sf::Color::Red)
 
@@ -43,16 +44,16 @@ void Minuterie::clic()
 
 void Minuterie::top()
 {
-    m_delay++;
-
-    if(m_delay>50)
+    if(m_delay>(_timer/2))
     {
-        if(m_rectmins.getFillColor()==sf::Color::Red)
-            m_rectmins.setFillColor(sf::Color::Green);
-        else
-            m_rectmins.setFillColor(sf::Color::Red);
-
-        m_delay=0;
+        m_rectmins.setFillColor(sf::Color::Red);
     }
+    else if(m_delay<=(_timer/2) && m_delay!=0)
+    {
+        m_rectmins.setFillColor(sf::Color::Green);
+    }
+    else m_delay=_timer;
+
+    m_delay--;
 }
 

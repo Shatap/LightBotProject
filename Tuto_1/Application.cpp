@@ -2,7 +2,7 @@
 #include <math.h>       /* sqrt */
 
 Application::Application(unsigned int w, unsigned int h,
-                     const std::wstring & title )
+                         const std::wstring & title )
     : m_window { {w, h}, title}
 {
 }

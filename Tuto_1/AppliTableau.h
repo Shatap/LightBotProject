@@ -34,12 +34,12 @@ private:
     void dessiner_rond();
     void dessiner_grille();
     int numero_position(Position m);
-<<<<<<< HEAD
+
     void modifierCouleur(int i, int j);
-=======
+
     Position numero_cases(Position m);
     void modifierCouleur();
->>>>>>> 23275e15f2c62e12ad0366ecb426943a82fa940d
+
 
     Position position_case(int i, int j);
 public:

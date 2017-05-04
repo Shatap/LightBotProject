@@ -6,16 +6,9 @@ namespace {
 constexpr int W = 600, H = 400;
 constexpr float RAYON = 20.0;
 constexpr float X_TEXTE = 400., Y_TEXTE = 350.;
-<<<<<<< HEAD
-<<<<<<< HEAD
-const std::string POLICE ="/home/ezraisreal/github/fonts/ComicSans.ttf";
-=======
-const std::string POLICE ="/usr/share/fonts/truetype/freefont/FreeMono.ttf";
->>>>>>> 23275e15f2c62e12ad0366ecb426943a82fa940d
-=======
-//const std::string POLICE ="/usr/share/fonts/truetype/freefont/FreeMono.ttf";
+
+//const std::string POLICE ="/home/ezraisreal/github/fonts/ComicSans.ttf";
 const std::string POLICE ="/usr/share/fonts/gnu-free/FreeMono.ttf";
->>>>>>> f60ea0d1bdb9a9138450ef4fed94964d062a946c
 const     Position COIN_RECTANGLE {500,350},
 DIMS_RECTANGLE {50, 25}, COIN_PALETTE {400, 100}, DIMS_CASECOLOR{50, 25},DIMS_PALETTE{50, 175},
 DIMS_CASE_CADR{50,50};
@@ -76,12 +69,10 @@ void AppliTableau::loop()
     case Etat::AJOUT:
         dessiner_rond();
         m_window.draw(m_rond);
-<<<<<<< HEAD
+
         mouse_pressed= true;
         break;
     case Etat::INITIAL:
-=======
->>>>>>> 23275e15f2c62e12ad0366ecb426943a82fa940d
         break;
     }
     m_window.display();
@@ -115,10 +106,9 @@ void AppliTableau::mouse_button_released()
 
     case Etat::AJOUT:
         modifierCouleur();
-<<<<<<< HEAD
         cout <<"AJOUT"<< endl;
-=======
->>>>>>> 23275e15f2c62e12ad0366ecb426943a82fa940d
+
+
         m_etat=Etat::INITIAL;
         break;
     default:
@@ -158,15 +148,13 @@ void AppliTableau::dessiner_grille()
     {
         for(int j=0;j<5;++j)
         {
-<<<<<<< HEAD
 
-            m_case.setPosition(position_case(i,j));
+            //m_case.setPosition(position_case(i,j));
             cout << i << endl;
             cout << j << endl;
-=======
+
             m_case.setPosition(CASE_SIZE+i*CASE_SIZE,CASE_SIZE+j*CASE_SIZE);
             m_case.setFillColor(COULEURS[m_tableau[i][j]]);
->>>>>>> 23275e15f2c62e12ad0366ecb426943a82fa940d
             m_window.draw(m_case);
 
         }
@@ -207,14 +195,15 @@ Position AppliTableau::numero_cases(Position m)
     return c;
 }
 
-<<<<<<< HEAD
 void AppliTableau::modifierCouleur(int i, int j)
 {
     if (m_mouse.x>CASE_SIZE*i && m_mouse.x<CASE_SIZE*(2*i) && m_mouse.y>CASE_SIZE*j && m_mouse.x<CASE_SIZE*(2*j))
     {
         m_mouse_square_x=i;
         m_mouse_square_y=j;
-=======
+    }
+}
+
 
 void AppliTableau::modifierCouleur()
 {
@@ -223,7 +212,6 @@ void AppliTableau::modifierCouleur()
     if(kase.x != -1)
     {
         m_tableau[kase.x][kase.y]=m_numcouleur;
->>>>>>> 23275e15f2c62e12ad0366ecb426943a82fa940d
     }
 }
 
