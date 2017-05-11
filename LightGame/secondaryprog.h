@@ -2,7 +2,7 @@
 #define SECONDARYPROG_H
 #include "program.h"
 
-class SecondaryPro:public Program
+class SecondaryProg:public Program
 {
 public:
     SecondaryProg();

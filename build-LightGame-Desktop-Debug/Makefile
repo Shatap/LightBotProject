@@ -14,7 +14,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_QML_DEBUG
 CFLAGS        = -pipe -g -Wall -W -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -std=c++11 -pedantic -Wall -Wextra -g -std=gnu++11 -Wall -W -fPIC $(DEFINES)
 INCPATH       = -I../LightGame -I. -I/usr/lib64/qt5/mkspecs/linux-g++
 QMAKE         = /usr/bin/qmake-qt5
 DEL_FILE      = rm -f
@@ -36,7 +36,7 @@ DISTNAME      = LightGame1.0.0
 DISTDIR = /home/Oka/LightBotProject/build-LightGame-Desktop-Debug/.tmp/LightGame1.0.0
 LINK          = g++
 LFLAGS        = 
-LIBS          = $(SUBLIBS)  
+LIBS          = $(SUBLIBS) -lsfml-graphics -lsfml-window -lsfml-system 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -56,7 +56,9 @@ SOURCES       = ../LightGame/main.cpp \
 		../LightGame/player.cpp \
 		../LightGame/grid.cpp \
 		../LightGame/hexagon.cpp \
-		../LightGame/primaryprog.cpp 
+		../LightGame/primaryprog.cpp \
+		../LightGame/secondaryprog.cpp \
+		../LightGame/execsecprog.cpp 
 OBJECTS       = main.o \
 		robot.o \
 		action.o \
@@ -65,7 +67,9 @@ OBJECTS       = main.o \
 		player.o \
 		grid.o \
 		hexagon.o \
-		primaryprog.o
+		primaryprog.o \
+		secondaryprog.o \
+		execsecprog.o
 DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/common/unix.conf \
 		/usr/lib64/qt5/mkspecs/common/linux.conf \
@@ -108,6 +112,7 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib64/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib64/qt5/mkspecs/features/spec_post.prf \
+		../LightGame/.qmake.stash \
 		/usr/lib64/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib64/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib64/qt5/mkspecs/features/default_pre.prf \
@@ -127,7 +132,9 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		player.h \
 		grid.h \
 		hexagon.h \
-		primaryprog.h ../LightGame/main.cpp \
+		primaryprog.h \
+		secondaryprog.h \
+		execsecprog.h ../LightGame/main.cpp \
 		../LightGame/robot.cpp \
 		../LightGame/action.cpp \
 		../LightGame/program.cpp \
@@ -135,7 +142,9 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		../LightGame/player.cpp \
 		../LightGame/grid.cpp \
 		../LightGame/hexagon.cpp \
-		../LightGame/primaryprog.cpp
+		../LightGame/primaryprog.cpp \
+		../LightGame/secondaryprog.cpp \
+		../LightGame/execsecprog.cpp
 QMAKE_TARGET  = LightGame
 DESTDIR       = 
 TARGET        = LightGame
@@ -189,6 +198,7 @@ Makefile: ../LightGame/LightGame.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf
 		/usr/lib64/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib64/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib64/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib64/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib64/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib64/qt5/mkspecs/features/default_pre.prf \
@@ -245,6 +255,7 @@ Makefile: ../LightGame/LightGame.pro /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf
 /usr/lib64/qt5/mkspecs/features/qt_config.prf:
 /usr/lib64/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib64/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib64/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib64/qt5/mkspecs/features/toolchain.prf:
 /usr/lib64/qt5/mkspecs/features/default_pre.prf:
@@ -319,7 +330,8 @@ level.o: ../LightGame/level.cpp ../LightGame/level.h
 player.o: ../LightGame/player.cpp ../LightGame/player.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player.o ../LightGame/player.cpp
 
-grid.o: ../LightGame/grid.cpp ../LightGame/grid.h
+grid.o: ../LightGame/grid.cpp ../LightGame/grid.h \
+		../LightGame/hexagon.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o grid.o ../LightGame/grid.cpp
 
 hexagon.o: ../LightGame/hexagon.cpp ../LightGame/hexagon.h
@@ -328,6 +340,14 @@ hexagon.o: ../LightGame/hexagon.cpp ../LightGame/hexagon.h
 primaryprog.o: ../LightGame/primaryprog.cpp ../LightGame/primaryprog.h \
 		../LightGame/program.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o primaryprog.o ../LightGame/primaryprog.cpp
+
+secondaryprog.o: ../LightGame/secondaryprog.cpp ../LightGame/secondaryprog.h \
+		../LightGame/program.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o secondaryprog.o ../LightGame/secondaryprog.cpp
+
+execsecprog.o: ../LightGame/execsecprog.cpp ../LightGame/execsecprog.h \
+		../LightGame/action.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o execsecprog.o ../LightGame/execsecprog.cpp
 
 ####### Install
 
