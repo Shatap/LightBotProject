@@ -9,7 +9,7 @@ private:
     std::vector<Hexagon *> _grid;
     Hexagon *_hex;
     sf::RenderWindow m_window;
-    const int GRID_SIZE =4;
+    const int GRID_SIZE =10;
 public:
     Grid();
     void display();

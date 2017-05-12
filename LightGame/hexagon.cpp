@@ -13,7 +13,7 @@ Hexagon::Hexagon(float size, sf::Color color)
     _hexa.setRadius(_size);
     _hexa.setFillColor(color);
     _hexa.setOutlineThickness(2);
-
+    _hexa.setRotation(30);
 
 
 }
