@@ -18,6 +18,11 @@ Hexagon::Hexagon(float size, sf::Color color)
 
 }
 
+Hexagon::~Hexagon()
+{
+
+}
+
 void Hexagon::Dessiner(sf::RenderWindow &w)
 {
     w.draw(_hexa);
