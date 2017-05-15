@@ -12,12 +12,19 @@ Grid::Grid()
 
     }
 
-    for(int i=1;i<=GRID_SIZE;i++)
+    for(int i=0;i<=GRID_SIZE;i++)
 
     {
-        for(int j=1;j<=GRID_SIZE;j++)
+        _hex  = new Hexagon(30.,sf::Color::Blue);
+
+            _prevPosX2=_grid.at(0)->getPosition().x;
+            _prevPosY2=_grid.at(0)->getPosition().y;
+            _hex->setPosition({_prevPosX2,_prevPosY2+60*i*sin((3.14/3))});
+            _grid.push_back(_hex);
+
+        for(int j=0;j<=GRID_SIZE;j++)
         {
-            if(j%2==1)
+            if(j%2==0)
             {
                 _hex  = new Hexagon(30.,sf::Color::Blue);
 
@@ -40,18 +47,8 @@ Grid::Grid()
             }
 
 
-                _hex  = new Hexagon(30.,sf::Color::Blue);
-
-                _prevPosX2=_grid.at(0)->getPosition().x;
-                _prevPosY2=_grid.at(0)->getPosition().y;
-                _hex->setPosition({_prevPosX2,_prevPosY2+30*i*sin((3.14/3))});
-                _grid.push_back(_hex);
-
-
-
-
-
         }
+
     }
 
 
