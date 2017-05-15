@@ -17,7 +17,8 @@ SOURCES += main.cpp \
     hexagon.cpp \
     primaryprog.cpp \
     secondaryprog.cpp \
-    execsecprog.cpp
+    execsecprog.cpp \
+    Menu.cpp
 
 HEADERS += \
     robot.h \
@@ -29,4 +30,5 @@ HEADERS += \
     hexagon.h \
     primaryprog.h \
     secondaryprog.h \
-    execsecprog.h
+    execsecprog.h \
+    Menu.h

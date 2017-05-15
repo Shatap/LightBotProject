@@ -77,7 +77,7 @@ void Grid::display()
         m_window.clear(sf::Color::White);
         for(Hexagon * h:_grid)
         {
-            h->Dessiner(m_window);
+            h->DrawHex(m_window);
         }
         m_window.display();
     }

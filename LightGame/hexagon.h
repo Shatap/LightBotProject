@@ -15,7 +15,7 @@ public:
     Hexagon();
     Hexagon(float size, sf::Color color);
     ~Hexagon();
-    void Dessiner(sf::RenderWindow &w);
+    void DrawHex(sf::RenderWindow &w);
     sf::Vector2f getPosition();
     void setPosition(sf::Vector2f pos);
 };

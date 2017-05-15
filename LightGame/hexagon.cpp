@@ -10,7 +10,7 @@ Hexagon::Hexagon(float size, sf::Color color)
 
 {
     _hexa.setPointCount(6);
-    _hexa.setRadius(_size);
+    _hexa.setRadius(size);
     _hexa.setFillColor(color);
     _hexa.setOutlineThickness(2);
     _hexa.setRotation(30);
@@ -23,7 +23,7 @@ Hexagon::~Hexagon()
 
 }
 
-void Hexagon::Dessiner(sf::RenderWindow &w)
+void Hexagon::DrawHex(sf::RenderWindow &w)
 {
     w.draw(_hexa);
 
