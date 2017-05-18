@@ -1,6 +1,7 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 #include "vector"
+#include "robot.h"
 
 class Level
 {
