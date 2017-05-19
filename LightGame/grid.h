@@ -10,7 +10,7 @@ private:
     std::vector<Hexagon *> _grid;
     Hexagon *_hex;
     sf::RenderWindow m_window;
-    const int GRID_SIZE =10;
+    const int GRID_SIZE =3;
      float _prevPosX ;
      float _prevPosY ;
      float _prevPosX2 ;
@@ -18,7 +18,7 @@ private:
 public:
     Grid();
     ~Grid();
-    void display();
+    void display(sf::RenderWindow &window);
 
 
 };

@@ -7,15 +7,18 @@ class Action
 {
 private:
     sf::RectangleShape _recAction;
+    sf::RenderWindow m_window;
+
     const int _ACT_HEIGHT=10;
     const int _ACT_WIDTH=10;
 
 
 public:
-    Action();
+    Action(int x,int y);
     void setRotation(Robot  &r);
     void changeAltitude(Robot  &r);
     void moveForward(Robot  &r);
+    void displayAction();
     //void executeAction();
 
 };

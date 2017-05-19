@@ -58,15 +58,11 @@ Grid::~Grid()
 
 }
 
-void Grid::display()
+void Grid::display(sf::RenderWindow &window)
 {
-    while (true) {
-
-        m_window.clear(sf::Color::White);
         for(Hexagon * h:_grid)
         {
-            h->DrawHex(m_window);
+            h->DrawHex(window);
         }
-        m_window.display();
-    }
+        window.display();
 }

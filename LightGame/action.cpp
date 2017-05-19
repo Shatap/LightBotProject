@@ -1,9 +1,9 @@
 #include "action.h"
 
 
-Action::Action()
+Action::Action(int x, int y)
 {
-    _recAction.setPosition(100, 50);
+    _recAction.setPosition(x,y);
     _recAction.setFillColor(sf::Color::Black);
     _recAction.setSize(sf::Vector2f(_ACT_WIDTH,_ACT_HEIGHT ));
 }
@@ -20,6 +20,17 @@ void Action::changeAltitude(Robot  &r)
 
 void Action::moveForward(Robot  &r)
 {
+
+}
+
+void Action::displayAction(sf::RenderWindow &window)
+{
+    while(true)
+    {
+        window.draw(_recAction);
+        //m_window.display();
+
+    }
 
 }
 

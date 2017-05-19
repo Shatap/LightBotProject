@@ -5,7 +5,7 @@
 class ExecSecProg:public Action
 {
 public:
-    ExecSecProg();
+    ExecSecProg(int x, int y);
 
 };
 

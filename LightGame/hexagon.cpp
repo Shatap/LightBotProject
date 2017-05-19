@@ -26,7 +26,6 @@ Hexagon::~Hexagon()
 void Hexagon::DrawHex(sf::RenderWindow &w)
 {
     w.draw(_hexa);
-
 }
 
 sf::Vector2f Hexagon::getPosition()
