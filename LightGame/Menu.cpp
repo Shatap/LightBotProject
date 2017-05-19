@@ -1,7 +1,9 @@
 #include "Menu.h"
+#include <iostream>
 
+//std::string title= "Lightbot: Learn to code!";
 Menu::Menu():
-    _window{{1000,800},"shatappp"}
+    Application(1000,800,"title")
 {
     _playbutton.setPosition(100, 50);
     _playbutton.setFillColor(sf::Color::Blue);
@@ -24,4 +26,29 @@ void Menu::ShowMenu()
         drawmenu(_window);
         _window.display();
     }
+}
+
+void Menu::loop()
+{
+
+}
+
+void Menu::init()
+{
+
+}
+
+void Menu::mouse_button_pressed()
+{
+
+}
+
+void Menu::mouse_moved()
+{
+
+}
+
+void Menu::key_pressed(const sf::Event::KeyEvent &)
+{
+
 }
