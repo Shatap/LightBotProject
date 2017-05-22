@@ -1,36 +1,58 @@
-/*#include "Menu.h"
+#include "Menu.h"
+#include "level.h"
 #include <iostream>
 
-//std::string title= "Lightbot: Learn to code!";
-Menu::Menu():
-    Application(1000,800,"title")
+Menu::Menu(sf::RenderWindow &window)
+    : Application(window)
 {
-    _playbutton.setPosition(100, 50);
-    _playbutton.setFillColor(sf::Color::Blue);
+    _window.setTitle("Lightbot: Learn to code!");
+    _button_font.loadFromFile("../fonts/PenguinAttack.ttf");
+    _playbutton.setPosition(425, 400);
+    _playbutton.setFillColor(sf::Color::Green);
     _playbutton.setSize(sf::Vector2f(_PLAY_WIDTH, _PLAY_HEIGHT));
-    _quitbutton.setPosition(100, 400);
-    _quitbutton.setFillColor(sf::Color::Blue);
+    _quitbutton.setPosition(425, 500);
+    _quitbutton.setFillColor(sf::Color::Red);
     _quitbutton.setSize(sf::Vector2f(_QUIT_WIDTH, _QUIT_HEIGHT));
+    _text_play.setPosition(425, 395);
+    _text_play.setString("PLAY");
+    _text_play.setFont(_button_font);
+    _text_play.setCharacterSize(60);
+    _text_quit.setPosition(425, 495);
+    _text_quit.setFont(_button_font);
+    _text_quit.setCharacterSize(60);
+    _text_quit.setString("QUIT");
+    if(!_texture.loadFromFile("/mnt/roon/users/wreeves/LightbotTitle.png"))
+    {
+        std::cout << "uh ooooooooooh" << std::endl;
+    }
+
+    _sprite.setTexture(_texture);
+    _sprite.setPosition(190, 100);
 }
 
 void Menu::drawmenu(sf::RenderWindow &w) {
     w.draw(_playbutton);
     w.draw(_quitbutton);
+    w.draw(_sprite);
+    w.draw(_text_play);
+    w.draw(_text_quit);
 }
 
 void Menu::showMenu()
 {
-    while (true) {
+//        while (true) {
 
-        _window.clear(sf::Color::White);
-        drawmenu(_window);
-        _window.display();
-    }
+//            _window.clear(sf::Color::White);
+//            drawmenu(_window);
+//            _window.display();
+//        }
 }
 
 void Menu::loop()
 {
-
+        _window.clear(sf::Color::White);
+        drawmenu(_window);
+        _window.display();
 }
 
 void Menu::init()
@@ -40,16 +62,26 @@ void Menu::init()
 
 void Menu::mouse_button_pressed()
 {
-
-}
-
-void Menu::mouse_moved()
-{
-
+    if(_playbutton.getGlobalBounds().contains(_mouse))
+    {
+//        _window.close();
+        std::cout << "bonjour" << std::endl;
+        _window.clear(sf::Color::Yellow);
+        Level l(_window);
+        l.run();
+    }
+    if(_quitbutton.getGlobalBounds().contains(_mouse))
+    {
+        exit(0);
+    }
 }
 
 void Menu::key_pressed(const sf::Event::KeyEvent &)
 {
 
 }
-*/
+
+bool Menu::souris_dans_rectangle(const Position &coin, const Position &dims) const
+{
+//    if(_mouse<= )
+}

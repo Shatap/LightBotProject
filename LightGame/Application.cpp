@@ -1,17 +1,16 @@
 #include "Application.h"
+#include <iostream>
 #include <math.h>       /* sqrt */
 
-Application::Application(unsigned int w, unsigned int h,
-                         const std::string &title )
-    : _window { {w, h}, title}
+Application::Application(sf::RenderWindow &window)
+    : _window(window)
 {
+
 }
 
 void Application::stop() {
     m_running = false;
 }
-
-
 
 void Application::run()
 {
@@ -32,26 +31,23 @@ void Application::process_events()
         return;
     }
 
-    sf::Event event;
-
-    while (_window.pollEvent(event))
+    while (_window.pollEvent(_event))
     {
-        switch (event.type)
+        switch (_event.type)
         {
         case sf::Event::Closed :
             stop();
             break;
         case sf::Event::KeyPressed :
-            key_pressed(event.key);
+            key_pressed(_event.key);
             break;
         case sf::Event::MouseButtonPressed :
             // bouton = event.mouseButton.button;
-            set_mouse_coord(event.mouseButton.x, event.mouseButton.y);
+            set_mouse_coord(_event.mouseButton.x, _event.mouseButton.y);
             mouse_button_pressed();
             break;
         case sf::Event::MouseMoved :
-            set_mouse_coord(event.mouseMove.x, event.mouseMove.y);
-            mouse_moved();
+            set_mouse_coord(_event.mouseMove.x, _event.mouseMove.y);
             break;
         default:
             break;
@@ -65,6 +61,7 @@ void Application::process_events()
  */
 void Application::set_mouse_coord(int x, int y)
 {
+    std::cout << "mouse : x : " << _mouse.x << ", y : " << _mouse.y << std::endl;
     auto pos = _window.mapPixelToCoords( {x, y});
     _mouse = { pos.x, pos.y };
 }
@@ -72,13 +69,3 @@ void Application::set_mouse_coord(int x, int y)
 /*
  * utilitaires (fonctions statiques)
  */
-
-float Application::module(const Position & v)
-{
-    return sqrt(v.x * v.x + v.y * v.y);
-}
-
-float Application::distance(const Position & p1, const Position & p2 )
-{
-    return module( p1 - p2 );
-}

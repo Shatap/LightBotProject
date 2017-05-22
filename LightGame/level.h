@@ -5,9 +5,10 @@
 #include "grid.h"
 #include "action.h"
 #include "execsecprog.h"
+#include "Application.h"
 
 
-class Level
+class Level: public Application
 {
 private:
     sf::RenderWindow _window;
@@ -20,20 +21,21 @@ private:
     Action *_changeAltitude ;
     ExecSecProg  *_secProg;
     sf::RectangleShape _quit;
-    bool _isRunning = true;
+//    bool _isRunning = true;
     sf::FloatRect _QUIT_DIM ;
     sf::Vector2i _mouse;
 
 
 public:
     Level();
+    Level(sf::RenderWindow& window);
     float setScore();
     float getScore();
     bool quit();
     void goToNextLevel();
     void replay();
     void pause_exec();
-    void execLevel();
+    void loop() override;
     void displayLevelButtons();
     void setMousePos(int x,int y);
     bool isMouseInEntity(const sf::Vector2i & mouse, const sf::FloatRect & entity);

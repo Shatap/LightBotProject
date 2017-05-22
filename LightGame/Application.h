@@ -19,8 +19,8 @@ using Position = sf::Vector2f;
 class Application
 {
 public:
-    Application(unsigned int w, unsigned int h,
-                const std::string & title);
+    Application(sf::RenderWindow& window);
+
     void run();
     virtual ~Application()               = default;
 
@@ -31,8 +31,9 @@ protected:
     /*
      * les variables accessibles par les sous-classes
      */
-    sf::RenderWindow _window;           // fenêtre de dessin
+    sf::RenderWindow &_window;           // fenêtre de dessin
     Position         _mouse;            // position de la souris
+    sf::Event _event;
 
     // fonctions accessibles
     void stop();
@@ -46,7 +47,6 @@ protected:
 
     // divers traitements d'évenements
     virtual void mouse_button_pressed ()                 {}
-    virtual void mouse_moved          ()                 {}
 
     virtual void key_pressed (const sf::Event::KeyEvent & /*event*/) {}
 
