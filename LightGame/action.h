@@ -18,7 +18,7 @@ public:
     void setRotation(Robot  &r);
     void changeAltitude(Robot  &r);
     void moveForward(Robot  &r);
-    void displayAction();
+    void displayAction(sf::RenderWindow &w);
     //void executeAction();
 
 };

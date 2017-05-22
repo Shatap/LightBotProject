@@ -28,7 +28,7 @@ void Action::displayAction(sf::RenderWindow &window)
     while(true)
     {
         window.draw(_recAction);
-        //m_window.display();
+        m_window.display();
 
     }
 
