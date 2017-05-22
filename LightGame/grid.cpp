@@ -1,7 +1,7 @@
 #include "grid.h"
 
 Grid::Grid()
-    :m_window{{1000,800},"shatappp"}
+
 {
 
     if(_grid.size()==0)
@@ -60,9 +60,12 @@ Grid::~Grid()
 
 void Grid::display(sf::RenderWindow &window)
 {
+
+
         for(Hexagon * h:_grid)
         {
             h->DrawHex(window);
         }
-        window.display();
+
+
 }

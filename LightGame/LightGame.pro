@@ -31,4 +31,4 @@ HEADERS += \
     primaryprog.h \
     secondaryprog.h \
     execsecprog.h \
-    Menu.h
+  //  Menu.h

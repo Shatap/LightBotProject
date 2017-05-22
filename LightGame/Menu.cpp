@@ -1,4 +1,4 @@
-#include "Menu.h"
+/*#include "Menu.h"
 #include <iostream>
 
 //std::string title= "Lightbot: Learn to code!";
@@ -52,3 +52,4 @@ void Menu::key_pressed(const sf::Event::KeyEvent &)
 {
 
 }
+*/
