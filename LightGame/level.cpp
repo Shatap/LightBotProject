@@ -1,9 +1,14 @@
 #include "level.h"
+#include "action.h"
+
 
 Level::Level()
     :_window{{1920,1080},"shatappp"}
 {
-    _grid = new Grid();
+
+_grid = new Grid();
+
+
 
     _secProg = new ExecSecProg(1200,500,Type_Action::sec_prog);
     _changeAltitude = new Action(1200,400,Type_Action::change_altitude);
@@ -48,6 +53,10 @@ sf::Event event;
         }
 
 
+
+        _rotation->displayAction(_window);
+        _forward->displayAction(_window);
+        _changeAltitude->displayAction(_window);
     }
 
 }

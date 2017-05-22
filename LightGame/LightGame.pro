@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     primaryprog.cpp \
     secondaryprog.cpp \
     execsecprog.cpp \
-    Menu.cpp
+    Menu.cpp \
+    Application.cpp
 
 HEADERS += \
     robot.h \
@@ -31,4 +32,5 @@ HEADERS += \
     primaryprog.h \
     secondaryprog.h \
     execsecprog.h \
-  //  Menu.h
+    Menu.h \
+    Application.h
