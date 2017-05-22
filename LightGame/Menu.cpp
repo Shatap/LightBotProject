@@ -2,6 +2,7 @@
 #include "level.h"
 #include <iostream>
 
+bool ntm ;
 Menu::Menu(sf::RenderWindow &window)
     : Application(window)
 {
@@ -30,6 +31,7 @@ Menu::Menu(sf::RenderWindow &window)
     _sprite.setPosition(190, 100);
 }
 
+
 void Menu::drawmenu(sf::RenderWindow &w) {
     w.draw(_playbutton);
     w.draw(_quitbutton);
@@ -50,10 +52,11 @@ void Menu::showMenu()
 
 void Menu::loop()
 {
+
         _window.clear(sf::Color::White);
         drawmenu(_window);
         _window.display();
-}
+    }
 
 void Menu::init()
 {
@@ -64,11 +67,20 @@ void Menu::mouse_button_pressed()
 {
     if(_playbutton.getGlobalBounds().contains(_mouse))
     {
-//        _window.close();
         std::cout << "bonjour" << std::endl;
-        _window.clear(sf::Color::Yellow);
+
+       // _window.~RenderWindow();
+
         Level l(_window);
+        _window.clear(sf::Color::White);
         l.run();
+
+
+
+        _window.close();
+
+
+
     }
     if(_quitbutton.getGlobalBounds().contains(_mouse))
     {

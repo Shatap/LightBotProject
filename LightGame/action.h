@@ -21,6 +21,7 @@ public:
     void moveForward(Robot  &r);
     void displayAction(sf::RenderWindow  & window);
     //void executeAction();
+    sf::RectangleShape  getDimension();
 
 };
 

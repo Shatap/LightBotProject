@@ -30,9 +30,10 @@ void Action::displayAction(sf::RenderWindow &window)
         window.draw(_recAction);
         m_window.display();
 
+}
 
-
-
-
+sf::RectangleShape Action::getDimension()
+{
+    return  _recAction;
 }
 

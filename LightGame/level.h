@@ -11,7 +11,7 @@
 class Level: public Application
 {
 private:
-    sf::RenderWindow _window;
+    sf::RenderWindow _lwindow;
     std::vector<Level*>_levels;
     std::vector<Grid *> _gridslvl;
     Grid * _grid;
@@ -21,7 +21,7 @@ private:
     Action *_changeAltitude ;
     ExecSecProg  *_secProg;
     sf::RectangleShape _quit;
-//    bool _isRunning = true;
+    bool _isRunning = true;
     sf::FloatRect _QUIT_DIM ;
     sf::Vector2i _mouse;
 

@@ -18,7 +18,7 @@ void Application::run()
     m_running = true;
 
     init();
-    while (m_running) {  // voir
+    while (m_running) {
         process_events();
         loop();
     }

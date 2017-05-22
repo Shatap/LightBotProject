@@ -51,7 +51,12 @@ void Level::loop()
     _rotation->displayAction(_window);
     _forward->displayAction(_window);
     _changeAltitude->displayAction(_window);
+
+
+
+
 }
+
 
 //}
 
@@ -60,6 +65,8 @@ void Level::displayLevelButtons()
     _window.draw(_quit);
 
 }
+
+
 
 //bool Level::isMouseInEntity(const sf::Vector2i &mouse, const sf::FloatRect &entity)
 //{
