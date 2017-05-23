@@ -6,12 +6,13 @@
 #include "action.h"
 #include "execsecprog.h"
 #include "Application.h"
+#include "primaryprog.h"
 
 
 class Level: public Application
 {
 private:
-    sf::RenderWindow _lwindow;
+   // sf::RenderWindow _lwindow;
     std::vector<Level*>_levels;
     std::vector<Grid *> _gridslvl;
     Grid * _grid;
@@ -23,7 +24,9 @@ private:
     sf::RectangleShape _quit;
     bool _isRunning = true;
     sf::FloatRect _QUIT_DIM ;
-    sf::Vector2i _mouse;
+  //  sf::Vector2i _mouse;
+    PrimaryProg * _primaryProg;
+    std::vector<Action *> _actionPannel;
 
 
 public:

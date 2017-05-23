@@ -25,7 +25,6 @@ public:
     //    sf::RectangleShape _playbutton;
     //    sf::RectangleShape _quitbutton;
     //    sf::Image _logo;
-    void showMenu();
     void loop() override;
     void init() override;
     void mouse_button_pressed() override;

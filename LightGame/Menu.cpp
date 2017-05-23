@@ -7,7 +7,7 @@ Menu::Menu(sf::RenderWindow &window)
     : Application(window)
 {
     _window.setTitle("Lightbot: Learn to code!");
-    _button_font.loadFromFile("../fonts/PenguinAttack.ttf");
+    _button_font.loadFromFile("../LightGame/Sources/PenguinAttack.ttf");
     _playbutton.setPosition(425, 400);
     _playbutton.setFillColor(sf::Color::Green);
     _playbutton.setSize(sf::Vector2f(_PLAY_WIDTH, _PLAY_HEIGHT));
@@ -40,23 +40,14 @@ void Menu::drawmenu(sf::RenderWindow &w) {
     w.draw(_text_quit);
 }
 
-void Menu::showMenu()
-{
-//        while (true) {
-
-//            _window.clear(sf::Color::White);
-//            drawmenu(_window);
-//            _window.display();
-//        }
-}
 
 void Menu::loop()
 {
 
-        _window.clear(sf::Color::White);
-        drawmenu(_window);
-        _window.display();
-    }
+    _window.clear(sf::Color::White);
+    drawmenu(_window);
+    _window.display();
+}
 
 void Menu::init()
 {
@@ -67,20 +58,10 @@ void Menu::mouse_button_pressed()
 {
     if(_playbutton.getGlobalBounds().contains(_mouse))
     {
-        std::cout << "bonjour" << std::endl;
-
-       // _window.~RenderWindow();
-
         Level l(_window);
         _window.clear(sf::Color::White);
         l.run();
-
-
-
         _window.close();
-
-
-
     }
     if(_quitbutton.getGlobalBounds().contains(_mouse))
     {
@@ -95,5 +76,5 @@ void Menu::key_pressed(const sf::Event::KeyEvent &)
 
 bool Menu::souris_dans_rectangle(const Position &coin, const Position &dims) const
 {
-//    if(_mouse<= )
+    //    if(_mouse<= )
 }
